@@ -1,0 +1,30 @@
+
+ProcessConfig = ANTLER
+{
+	MSBetweenLaunches 	= 200
+	
+	Run = MOOSDB   
+	Run = RawlogPlay   @ NewConsole = true
+}
+
+ProcessConfig = MOOSDB
+{
+	// Enable webserver in MOOSDB
+	WEBSERVERPORT  = 9080
+}
+
+//------------------------------------------
+// RawlogPlay configuration block
+
+ProcessConfig = RawlogPlay
+{
+	CommsTick  = 1000
+	AppTick    = 1000
+
+	// (Mandatory) Path to the rawlog file to open
+	INPUT_RAWLOG = D:\Rawlogs\ual-datasets\2014-05-02_datasets_maniobras\04_snake\LOG_2014_05_02_12_41_27_rect.rawlog
+
+	// (Default=1.0) Time warping: <1=slower than real time.
+	// TIME_WARP  = 1.0
+}
+
