@@ -83,6 +83,8 @@ bool CScopeApp::OnCommandMsg( CMOOSMsg Msg )
 // Main module loop code. Do the main stuff here...
 bool CScopeApp::Iterate()
 {
+	if (!m_theWxApp->m_theFrame) return true;
+
 	if (m_theWxApp->m_theFrame->m_closing)
 	{
 		RequestQuit();
@@ -119,6 +121,8 @@ bool hasEnding (std::string const &fullString, std::string const &ending)
 
 bool CScopeApp::OnNewMail(MOOSMSG_LIST &NewMail)
 {
+	if (!m_theWxApp->m_theFrame) return true;
+
 	if (m_theWxApp->m_theFrame->m_closing)
 	{
 		RequestQuit();

@@ -9,17 +9,17 @@
 #define SCOPEWINDOWMAIN_H
 
 //(*Headers(ScopeWindowDialog)
-#include <wx/notebook.h>
+#include <wx/checklst.h>
+#include <wx/dialog.h>
 #include <wx/sizer.h>
+#include <wx/notebook.h>
+#include <wx/button.h>
+#include <wx/panel.h>
+#include <wx/statline.h>
+#include <wx/gbsizer.h>
 #include <wx/stattext.h>
 #include <wx/textctrl.h>
-#include <wx/checklst.h>
-#include <wx/statline.h>
-#include <wx/panel.h>
 #include <wx/choice.h>
-#include <wx/gbsizer.h>
-#include <wx/button.h>
-#include <wx/dialog.h>
 #include <wx/timer.h>
 //*)
 
@@ -80,31 +80,31 @@ class ScopeWindowDialog: public wxDialog
         //*)
 
         //(*Declarations(ScopeWindowDialog)
-        wxButton* btnTxtStop;
-        wxChoice* cbScopeVarList;
-        wxButton* btnScopeClear;
-        wxPanel* ScrolledWindow1;
-        wxNotebook* Notebook1;
-        wxTextCtrl* edTxtFilename;
-        wxStaticText* StaticText2;
-        wxButton* btnScopeRefreshList;
         wxPanel* Panel1;
-        wxStaticText* StaticText1;
-        wxCheckListBox* lbOBS;
-        wxButton* btnScopeClearPlots;
-        wxPanel* Panel3;
-        wxTextCtrl* txtTxtLogState;
-        wxBoxSizer* gridMain;
-        wxCheckListBox* lbNonBinVars;
-        wxButton* btnTxtStart;
-        wxTimer timSynchWithMOOSThread;
-        wxTextCtrl* edRawlogFilename;
-        wxStaticLine* StaticLine1;
-        wxBoxSizer* BoxSizer1;
-        wxTextCtrl* txtRawlogState;
-        wxPanel* Panel2;
+        wxPanel* ScrolledWindow1;
         wxButton* btnTxtRefresh;
+        wxButton* btnScopeClear;
+        wxTextCtrl* edTxtFilename;
+        wxButton* btnTxtStop;
+        wxTextCtrl* edRawlogFilename;
+        wxCheckListBox* lbOBS;
+        wxStaticText* StaticText1;
+        wxPanel* Panel2;
+        wxButton* btnScopeRefreshList;
+        wxTextCtrl* txtTxtLogState;
+        wxStaticLine* StaticLine1;
+        wxPanel* Panel3;
+        wxButton* btnTxtStart;
+        wxBoxSizer* BoxSizer1;
+        wxStaticText* StaticText2;
+        wxNotebook* Notebook1;
+        wxBoxSizer* gridMain;
+        wxTimer timSynchWithMOOSThread;
+        wxButton* btnScopeClearPlots;
+        wxChoice* cbScopeVarList;
+        wxTextCtrl* txtRawlogState;
         wxButton* btnScopeAdd;
+        wxCheckListBox* lbNonBinVars;
         //*)
 
         DECLARE_EVENT_TABLE()
