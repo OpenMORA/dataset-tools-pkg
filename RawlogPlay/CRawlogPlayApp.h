@@ -10,7 +10,7 @@
 
 #include <COpenMORAMOOSApp.h>
 
-#include <mrpt/slam/CObservation.h>
+#include <mrpt/obs/CObservation.h>
 #include <mrpt/utils/CTicTac.h>
 #include <mrpt/utils/CFileGZInputStream.h>
 #include <mrpt/system/datetime.h>

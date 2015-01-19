@@ -13,11 +13,11 @@
 
 #include <mrpt/system/string_utils.h>
 #include <mrpt/system/filesystem.h>
-#include <mrpt/slam/CObservation2DRangeScan.h>
-#include <mrpt/slam/CObservationImage.h>
-#include <mrpt/slam/CObservationStereoImages.h>
-#include <mrpt/slam/CSimplePointsMap.h>
-#include <mrpt/slam/CRawlog.h>
+#include <mrpt/obs/CObservation2DRangeScan.h>
+#include <mrpt/obs/CObservationImage.h>
+#include <mrpt/obs/CObservationStereoImages.h>
+#include <mrpt/maps/CSimplePointsMap.h>
+#include <mrpt/obs/CRawlog.h>
 
 #include <sstream>
 #include <iomanip>
@@ -32,8 +32,8 @@ using namespace mrpt::utils;
 CScopeApp::CScopeApp( ScopeWindowApp *the_wx_app) :
     m_theWxApp(the_wx_app)
 {
-	mrpt::slam::CObservation2DRangeScan  dummy1; // Just to force loading the runtime class list of [mrpt-obs]
-	mrpt::slam::CSimplePointsMap dummy2;// Just to force loading the runtime class list of [mrpt-map]
+	mrpt::obs::CObservation2DRangeScan  dummy1; // Just to force loading the runtime class list of [mrpt-obs]
+	mrpt::maps::CSimplePointsMap dummy2;// Just to force loading the runtime class list of [mrpt-map]
 
 }
 
@@ -201,19 +201,19 @@ bool CScopeApp::OnNewMail(MOOSMSG_LIST &NewMail)
 					mrpt::utils::RawStringToObject(msg.GetString(), obj);
 
 					// Special handle for external img files:
-					using mrpt::slam::CObservationStereoImages;
+					using mrpt::obs::CObservationStereoImages;
 					if (obj && IS_CLASS(obj,CObservationStereoImages))
 					{
-						mrpt::slam::CObservationStereoImagesPtr obsSt = mrpt::slam::CObservationStereoImagesPtr(obj);
+						mrpt::obs::CObservationStereoImagesPtr obsSt = mrpt::obs::CObservationStereoImagesPtr(obj);
 
 						moveExternalImage(obsSt->imageLeft);
 						moveExternalImage(obsSt->imageRight);
 					} // end of special treatment to stereo images
 
-					using mrpt::slam::CObservationImage;
+					using mrpt::obs::CObservationImage;
 					if (obj && IS_CLASS(obj,CObservationImage))
 					{
-						mrpt::slam::CObservationImagePtr obs = mrpt::slam::CObservationImagePtr(obj);
+						mrpt::obs::CObservationImagePtr obs = mrpt::obs::CObservationImagePtr(obj);
 
 						moveExternalImage(obs->image);
 					} // end of special treatment to monocular images
