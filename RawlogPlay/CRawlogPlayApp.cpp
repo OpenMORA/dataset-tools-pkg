@@ -10,7 +10,7 @@
 #include "CRawlogPlayApp.h"
 
 #include <mrpt/system/threads.h> // sleep()
-#include <mrpt/slam/CRawlog.h>
+#include <mrpt/obs/CRawlog.h>
 
 #include <sstream>
 #include <iomanip>
@@ -19,9 +19,8 @@
 using namespace std;
 
 using namespace mrpt;
-using namespace mrpt::slam;
 using namespace mrpt::utils;
-using namespace mrpt::slam;
+using namespace mrpt::obs;
 
 
 CRawlogPlayApp::CRawlogPlayApp()  :
@@ -53,7 +52,7 @@ bool CRawlogPlayApp::OnStartUp()
 		return false;
 
 	// Autodetect images directory:
-	const string sImgsDir = mrpt::slam::CRawlog::detectImagesDirectory(sRawlogFile);
+	const string sImgsDir = mrpt::obs::CRawlog::detectImagesDirectory(sRawlogFile);
 
 	//!  @moos_var     MORA_IMAGES_DIR The directory where mrpt::utils::CImage store delay-load images (may be a shared memory directory)
 	m_Comms.Notify("MORA_IMAGES_DIR", sImgsDir);
@@ -95,7 +94,7 @@ bool CRawlogPlayApp::Iterate()
 
 	if (!IS_DERIVED(obj, CObservation))
 	{
-		cerr << "Read object is not mrpt::slam::CObservation!!! Ignoring...\n";
+		cerr << "Read object is not mrpt::obs::CObservation!!! Ignoring...\n";
 		return true;
 	}
 
