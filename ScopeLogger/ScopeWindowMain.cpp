@@ -15,9 +15,9 @@
 
 //(*InternalHeaders(ScopeWindowDialog)
 #include <wx/settings.h>
-#include <wx/font.h>
-#include <wx/intl.h>
 #include <wx/string.h>
+#include <wx/intl.h>
+#include <wx/font.h>
 //*)
 
 //(*IdInit(ScopeWindowDialog)
@@ -58,9 +58,9 @@ ScopeWindowDialog::ScopeWindowDialog(ScopeWindowApp *my_app, wxWindow* parent,wx
 	m_active_rawlog_obs_count(0)
 {
     //(*Initialize(ScopeWindowDialog)
-    wxGridBagSizer* GridBagSizer2;
-    wxFlexGridSizer* FlexGridSizer2;
     wxFlexGridSizer* FlexGridSizer1;
+    wxFlexGridSizer* FlexGridSizer2;
+    wxGridBagSizer* GridBagSizer2;
 
     Create(parent, wxID_ANY, _("UAL MOOS Scope app"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER|wxMAXIMIZE_BOX|wxMINIMIZE_BOX|wxFRAME_SHAPED|wxVSCROLL|wxHSCROLL, _T("wxID_ANY"));
     SetMinSize(wxSize(-1,400));
@@ -103,11 +103,6 @@ ScopeWindowDialog::ScopeWindowDialog(ScopeWindowApp *my_app, wxWindow* parent,wx
     FlexGridSizer1->SetSizeHints(Panel1);
     Panel3 = new wxPanel(Notebook1, ID_PANEL3, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL, _T("ID_PANEL3"));
     GridBagSizer2 = new wxGridBagSizer(0, 0);
-    GridBagSizer2->AddGrowableCol(2);
-    GridBagSizer2->AddGrowableRow(2);
-    GridBagSizer2->AddGrowableRow(3);
-    GridBagSizer2->AddGrowableRow(4);
-    GridBagSizer2->AddGrowableRow(5);
     btnTxtRefresh = new wxButton(Panel3, ID_BUTTON7, _("Refresh var lists..."), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON7"));
     GridBagSizer2->Add(btnTxtRefresh, wxGBPosition(0, 0), wxGBSpan(2, 1), wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     btnTxtStop = new wxButton(Panel3, ID_BUTTON10, _("STOP"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON10"));
@@ -137,6 +132,13 @@ ScopeWindowDialog::ScopeWindowDialog(ScopeWindowApp *my_app, wxWindow* parent,wx
     txtTxtLogState->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_BTNFACE));
     GridBagSizer2->Add(txtTxtLogState, wxGBPosition(2, 3), wxGBSpan(1, 3), wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     Panel3->SetSizer(GridBagSizer2);
+
+    GridBagSizer2->AddGrowableCol(2);
+    GridBagSizer2->AddGrowableRow(2);
+    GridBagSizer2->AddGrowableRow(3);
+    GridBagSizer2->AddGrowableRow(4);
+    GridBagSizer2->AddGrowableRow(5);
+
     GridBagSizer2->Fit(Panel3);
     GridBagSizer2->SetSizeHints(Panel3);
     Notebook1->AddPage(Panel1, _("Live Scope"), true);
