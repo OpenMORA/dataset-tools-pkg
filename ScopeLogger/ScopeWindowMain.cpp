@@ -171,6 +171,26 @@ ScopeWindowDialog::~ScopeWindowDialog()
 	mrpt::system::sleep(2000);
 }
 
+void ScopeWindowDialog::Init()
+{
+	//is there a request to start logging some variables from the start?	
+	for (std::set<std::string>::iterator it = m_initially_active_rawlog_varnames.begin(); it != m_initially_active_rawlog_varnames.end(); it++)
+		m_lstAllMRPTObsVars.insert(*it);											//Add variables to the list of all available variables
+	
+	wxCommandEvent evt = wxCommandEvent(wxEVT_COMMAND_BUTTON_CLICKED, wxID_OK);
+	ScopeWindowDialog::OnbtnTxtRefreshClick(evt);									//simulate the refresh variables button
+
+	//Check only variables the user is interested in	
+	for (size_t i = 0; i<lbOBS->GetCount(); i++)
+	{
+		std::string varName = lbOBS->GetString(i);
+		if (m_initially_active_rawlog_varnames.find(varName) != m_initially_active_rawlog_varnames.end())
+		{
+			lbOBS->Check(i);
+		}
+	}
+	ScopeWindowDialog::OnbtnTxtStartClick(evt);										//simulate the start button	
+}
 
 void ScopeWindowDialog::OnbtnClearClick(wxCommandEvent& event)
 {

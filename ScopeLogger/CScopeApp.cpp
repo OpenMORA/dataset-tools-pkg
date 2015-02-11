@@ -5,7 +5,10 @@
    |   Copyright (C) 2014  University of Almeria                               |
    +---------------------------------------------------------------------------+ */
 
-/**  @moos_module GUI tool: an oscilloscope module to inspect a set of variables in runtime. */
+/**  @moos_module GUI tool with two main functions:
+  *  Tab1: an oscilloscope module to inspect a set of variables in runtime. 
+  *  Tab2: a logger module to save mrpt-derived variables to rawlog (similar to the mrpt::rawlog-grabber)
+  */
 
 #include "CScopeApp.h"
 #include "ScopeWindowApp.h"
@@ -42,7 +45,7 @@ CScopeApp::~CScopeApp()
 }
 
 bool CScopeApp::OnStartUp()
-{
+{	
 	// If want a different mode than standard:
 	// - REGULAR_ITERATE_AND_MAIL
 	// - COMMS_DRIVEN_ITERATE_AND_MAIL
@@ -54,14 +57,27 @@ bool CScopeApp::OnStartUp()
 
 	// Read parameters from the mission configuration file.
 	//! @moos_param PLOT_VARS PARAM DESCRIPTION IN ONE LINE
-
 	std::string sVarList;
 	m_MissionReader.GetConfigurationParam("PLOT_VARS",sVarList);
-
 	std::vector<std::string> lstVarNames;
 	mrpt::system::tokenize(sVarList," \t\r\n,",lstVarNames);
-
 	MOOSTrace("[Scope] %u variables. PLOT_VARS = %s\n", (unsigned int)lstVarNames.size(), sVarList.c_str());
+
+
+	//! @moos_param log_vars_from_start List of variables to be saved to rawlog from the start
+	std::string sVarListlog;
+	m_MissionReader.GetConfigurationParam("log_vars_from_start", sVarListlog);
+	std::vector<std::string> lstVarLogNames;
+	mrpt::system::tokenize(sVarListlog, " \t\r\n,", lstVarLogNames);
+	MOOSTrace("[Scope] %u variables. log_vars = %s\n", (unsigned int)lstVarLogNames.size(), sVarListlog.c_str());
+	for (std::vector<std::string>::iterator it = lstVarLogNames.begin(); it != lstVarLogNames.end(); it++)
+	{
+		m_theWxApp->m_theFrame->m_initially_active_rawlog_varnames.insert(*it);
+		//m_theWxApp->m_theFrame->m_lstAllMRPTObsVars.insert(*it);
+	}
+	
+	//Initialize the rawlog-grabber with the list of variables.
+	m_theWxApp->m_theFrame->Init();
 
 	// There is also a MRPT-like object (this->m_ini) that is a wrapper
 	//  to read from the module config block of the current MOOS mission file.

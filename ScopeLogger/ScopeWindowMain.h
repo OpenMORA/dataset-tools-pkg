@@ -37,6 +37,7 @@ class ScopeWindowDialog: public wxDialog
 
         ScopeWindowDialog(ScopeWindowApp *the_wx_app, wxWindow* parent,wxWindowID id = -1);
         virtual ~ScopeWindowDialog();
+		void Init();
 
     //private:
         ScopeWindowApp *m_the_wx_app;
@@ -111,6 +112,7 @@ class ScopeWindowDialog: public wxDialog
 
 		void rebuildPlotObjects();
 		void redrawPlotObjects();
+		
 
 	public:
 		// ------- Variables shared with the MOOS app thread -----------
@@ -146,11 +148,12 @@ class ScopeWindowDialog: public wxDialog
 
 
 		std::set<std::string>             m_active_rawlog_varnames;
+		std::set<std::string>             m_initially_active_rawlog_varnames;
 		mrpt::utils::CFileGZOutputStream  m_active_rawlog_file;
 		std::string                       m_active_rawlog_filename;
 		std::string                       m_active_rawlog_imgs_dir; //!< Empty if no image was recorded yet
 		size_t                            m_active_rawlog_obs_count;
-
+		
 
 
 

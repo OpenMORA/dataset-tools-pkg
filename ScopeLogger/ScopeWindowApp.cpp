@@ -51,8 +51,8 @@ bool ScopeWindowApp::OnInit()
     m_theFrame = new ScopeWindowDialog(this,0);
     SetTopWindow(m_theFrame);
     m_theFrame->ShowModal();
-
-    return false;
+		
+	return false;
 }
 
 
