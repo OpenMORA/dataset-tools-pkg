@@ -183,7 +183,7 @@ void ScopeWindowDialog::Init()
 	//Check only variables the user is interested in	
 	for (size_t i = 0; i<lbOBS->GetCount(); i++)
 	{
-		std::string varName = lbOBS->GetString(i);
+        std::string varName = std::string(lbOBS->GetString(i).mbc_str());
 		if (m_initially_active_rawlog_varnames.find(varName) != m_initially_active_rawlog_varnames.end())
 		{
 			lbOBS->Check(i);
